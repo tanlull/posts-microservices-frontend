@@ -3,7 +3,9 @@
 # dependencies
 /node_modules
 /comments/node_modules
+/comments/test
 /posts/node_modules
+/posts/test
 /.pnp
 .pnp.js
 
