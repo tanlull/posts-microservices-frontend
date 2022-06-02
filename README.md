@@ -4,7 +4,7 @@
 http://localhost:3000
 
 # Run Post
-> cd /Posts
+> cd /posts
 
 > npm run start:dev
 
@@ -13,7 +13,7 @@ http://localhost:8000/api/posts
 
 # Run Comment 
 
-> cd /Comments
+> cd /comments
 
 > npm run start:dev
 
