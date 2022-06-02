@@ -17,7 +17,8 @@ let PostsModule = class PostsModule {
 PostsModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            typeorm_1.TypeOrmModule.forFeature([posts_entity_1.Post])
+            typeorm_1.TypeOrmModule.forFeature([posts_entity_1.Post]),
+            common_1.HttpModule,
         ],
         controllers: [posts_controller_1.PostsController],
         providers: [posts_service_1.PostsService]

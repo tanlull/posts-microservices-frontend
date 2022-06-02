@@ -16,14 +16,21 @@ exports.PostsController = void 0;
 const posts_service_1 = require("./posts.service");
 const common_1 = require("@nestjs/common");
 let PostsController = class PostsController {
-    constructor(PostService) {
-        this.PostService = PostService;
+    constructor(postService, httpService) {
+        this.postService = postService;
+        this.httpService = httpService;
     }
     async all() {
-        return this.PostService.find();
+        let posts = await this.postService.find();
+        for (let i = 0; i < posts.length; i++) {
+            let post = posts[i];
+            let request = await this.httpService.get(`http://localhost:8001/api/comments/posts/${post.id}/comments`).toPromise();
+            posts[i] = Object.assign(Object.assign({}, post), { comments: request.data });
+        }
+        return posts;
     }
     async create(title, description) {
-        return this.PostService.create({
+        return this.postService.create({
             title,
             description
         });
@@ -45,7 +52,8 @@ __decorate([
 ], PostsController.prototype, "create", null);
 PostsController = __decorate([
     (0, common_1.Controller)('posts'),
-    __metadata("design:paramtypes", [posts_service_1.PostsService])
+    __metadata("design:paramtypes", [posts_service_1.PostsService,
+        common_1.HttpService])
 ], PostsController);
 exports.PostsController = PostsController;
 //# sourceMappingURL=posts.controller.js.map
